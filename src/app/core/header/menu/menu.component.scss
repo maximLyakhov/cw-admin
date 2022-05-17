@@ -1,0 +1,39 @@
+@import '_colors';
+
+%row-c {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+nav {
+  @extend %row-c;
+  background: $white;
+  gap: 12px;
+
+  a {
+    @extend %row-c;
+    cursor: pointer;
+    padding: 8px 16px;
+
+    span {
+      margin-left: 2px;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 16px;
+    }
+
+    &.active {
+      background: $blue-10;
+      border-radius: 8px;
+    }
+
+    &:not(.active) {
+      color: $gray-70;
+    }
+
+    &:hover {
+      color: $blue-50;
+    }
+  }
+}

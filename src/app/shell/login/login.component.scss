@@ -1,0 +1,38 @@
+@import '_colors';
+
+:host {
+	height: 100%;
+	width: 100%;
+	background: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	overflow: auto;
+}
+
+h2 {
+	margin-bottom: 36px;
+}
+
+.left,
+.right {
+	flex: 50%;
+}
+
+.left {
+	max-width: 448px;
+}
+
+.right {
+	max-width: 448px;
+}
+
+.forgot {
+	font-size: 17px;
+	line-height: 24px;
+	color: $gray-60;
+
+	.reset {
+		color: $blue-50;
+	}
+}

@@ -1,0 +1,36 @@
+@mixin scrollbars(
+	$size,
+	$foreground-color,
+	$background-color: mix($foreground-color, white, 50%)
+) {
+	&::-webkit-scrollbar {
+		width: $size;
+		height: $size;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: $foreground-color;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: $background-color;
+	}
+
+	& {
+		@supports (scrollbar-color: $foreground-color $background-color) {
+			scrollbar-color: $foreground-color $background-color;
+		}
+
+		@supports (scrollbar-width: thin) {
+			scrollbar-width: thin;
+		}
+
+		@supports (scrollbar-face-color: $foreground-color) {
+			scrollbar-face-color: $foreground-color;
+		}
+
+		@supports (scrollbar-track-color: $background-color ) {
+			scrollbar-track-color: $background-color;
+		}
+	}
+}

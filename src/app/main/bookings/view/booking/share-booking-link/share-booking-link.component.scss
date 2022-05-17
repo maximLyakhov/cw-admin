@@ -1,0 +1,25 @@
+@import '_colors';
+
+.mb-16 {
+	margin-bottom: 16px;
+}
+
+label {
+	padding: 0 4px;
+}
+
+.share {
+	margin-left: 2px;
+
+	input {
+		border: 2px solid $blue-10;
+		box-shadow: none;
+		font-size: 16px;
+		width: 100%
+	}
+
+	.copied {
+		color: $gray-50;
+		font-weight: 600;
+	}
+}

@@ -1,0 +1,127 @@
+@import '_colors';
+
+%column {
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+%border {
+	border-bottom: 1px solid $gray-30;
+}
+
+.custom-table {
+	@extend %column;
+	height: 100%;
+	justify-content: space-between;
+}
+
+cwb-smart-table {
+	height: 100%;
+	font-size: unset !important;
+
+	select {
+		height: 28px;
+		outline: none;
+		border-radius: 8px;
+		padding: 4px !important;
+		border: 1px solid #adc8ff;
+		box-shadow: inset 0 1px 2px rgb(0 0 0 / 8%);
+		background: white;
+		color: $gray-50 !important;
+	}
+
+	thead {
+		@extend %border;
+		background: $gray-20;
+
+		.ng2-smart-sort-link {
+			&.sort {
+				text-decoration: none;
+				color: $gray-80;
+				font-size: 14px;
+				font-weight: 600;
+				line-height: 24px;
+
+				&:hover {
+					color: $blue-50;
+				}
+			}
+		}
+
+		.ng2-smart-sort {
+			color: $gray-80;
+		}
+
+		.ng2-smart-title {
+			text-align: left;
+		}
+	}
+
+	.ng2-smart-row {
+		height: 112px;
+
+		&.selected {
+			background: $blue-10 !important;
+		}
+
+		&:not(:last-of-type) {
+			@extend %border;
+		}
+
+		td {
+			font-weight: 400;
+			font-size: 18px !important;
+			line-height: 24px;
+			color: $gray-90;
+		}
+	}
+
+	.ng2-smart-pagination {
+		line-height: 24px;
+		gap: 32px;
+		margin: 0;
+
+		.ng2-smart-page-item {
+			&.active {
+				span {
+					background: $blue-10;
+					color: $blue-50;
+				}
+			}
+		}
+
+		.page-link {
+			@extend %column;
+			text-decoration: none;
+			color: $blue-50;
+			font-size: 16px;
+			font-weight: 600;
+			justify-content: center;
+			text-align: center;
+			height: 44px;
+			width: 44px;
+		}
+
+		.page-link-next,
+		.page-link-prev {
+			span {
+				display: none;
+			}
+			&:after {
+				margin-top: 7px;
+			}
+		}
+
+		.page-link-prev {
+			&:after {
+				content: url("../../../../assets/chevron-left.svg");
+			}
+		}
+
+		.page-link-next {
+			&:after {
+				content: url("../../../../assets/chevron-right.svg");
+			}
+		}
+	}
+}

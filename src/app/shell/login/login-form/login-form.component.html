@@ -1,0 +1,25 @@
+<form [formGroup]="form" class="flex col">
+	<cw-input
+		inputLabel="Email"
+		formControlName="email"
+		inputPlaceholder="Enter email here"
+		inputAutocomplete="email"
+		inputType="text"
+	></cw-input>
+
+	<cw-input
+		inputLabel="Password"
+		inputPlaceholder="Your password here"
+		inputAutocomplete="password"
+		inputType="password"
+		formControlName="password"
+	></cw-input>
+
+	<cw-button
+		class="button"
+		buttonText="Login"
+		buttonType="submit"
+		[buttonDisabled]="form.invalid"
+		(click)="login()"
+	></cw-button>
+</form>

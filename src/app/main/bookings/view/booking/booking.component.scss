@@ -1,0 +1,39 @@
+@import '_colors';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  height: 100%;
+}
+
+.head {
+  padding-bottom: 8px;
+  border-bottom: 1px solid $gray-20;
+}
+
+.scrollable {
+  padding-right: 8px;
+  padding-bottom: 8px;
+  height: calc(100vh - 333px);
+  overflow-y: auto;
+}
+
+fieldset {
+  border-radius: 8px;
+  border: 2px solid $blue-10;
+  padding: 12px;
+
+  .text-field {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1;
+    color: $gray-80;
+    word-break: break-word;
+  }
+
+  .copyable {
+    user-select: all;
+  }
+}

@@ -1,0 +1,22 @@
+:host {
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow-x: hidden;
+}
+
+.register {
+	font-weight: 700;
+	font-size: 40px;
+	line-height: 48px;
+	/* Grey/90 */
+	color: #000408;
+	margin: 20px 0;
+	display: flex;
+	align-self: flex-start;
+}
+
+form {
+	width: 448px;
+}

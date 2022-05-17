@@ -1,0 +1,228 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "150123c6-a91a-4301-99ba-4e38281fee64"
+  },
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "cw-booking": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "inlineStyle": false,
+          "style": "scss",
+          "skipTests": true,
+          "changeDetection": "OnPush"
+        },
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "cwb",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "1mb",
+                "maximumError": "2mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
+              }
+            ],
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/scss"
+              ]
+            },
+            "styles": [
+              "src/styles.scss",
+              "src/scss/flex.scss",
+              "src/scss/overlays.scss",
+              "src/scss/overrides.scss",
+              "src/scss/scrollbars.scss",
+              "src/scss/spacings.scss",
+              "src/scss/typography.scss",
+              "src/scss/utilities.scss"
+            ]
+          },
+          "configurations": {
+            "booking-production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/booking/environment.booking.prod.ts"
+                }
+              ],
+              "outputPath": "build/cw-booking",
+              "buildOptimizer": true,
+              "optimization": true,
+              "vendorChunk": false,
+              "extractLicenses": true,
+              "sourceMap": false,
+              "namedChunks": false,
+              "outputHashing": "all"
+            },
+            "booking-development": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/booking/environment.booking.dev.ts"
+                }
+              ],
+              "outputPath": "dist/cw-booking",
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "booking-local": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/booking/environment.booking.local.ts"
+                }
+              ],
+              "outputPath": "dist/cw-booking",
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "admin-production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/admin/environment.admin.prod.ts"
+                }
+              ],
+              "outputPath": "build/cw-admin",
+              "buildOptimizer": true,
+              "optimization": true,
+              "vendorChunk": false,
+              "extractLicenses": true,
+              "sourceMap": false,
+              "namedChunks": false,
+              "outputHashing": "all"
+            },
+            "wba": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/admin/environment.admin.prod.ts"
+                }
+              ],
+              "outputPath": "build/cw-admin",
+              "buildOptimizer": true,
+              "optimization": true,
+              "vendorChunk": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "outputHashing": "all"
+            },
+            "admin-development": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/admin/environment.admin.dev.ts"
+                }
+              ],
+              "outputPath": "dist/cw-admin",
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "admin-local": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/admin/environment.admin.local.ts"
+                }
+              ],
+              "outputPath": "dist/cw-admin",
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "admin-production": {
+              "browserTarget": "cw-booking:build:admin-production"
+            },
+            "booking-production": {
+              "browserTarget": "cw-booking:build:booking-production"
+            },
+            "admin-development": {
+              "browserTarget": "cw-booking:build:admin-development"
+            },
+            "booking-development": {
+              "browserTarget": "cw-booking:build:booking-development"
+            },
+            "admin-local": {
+              "browserTarget": "cw-booking:build:admin-local"
+            },
+            "booking-local": {
+              "browserTarget": "cw-booking:build:booking-local"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "cw-booking:build"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "cw-booking"
+}

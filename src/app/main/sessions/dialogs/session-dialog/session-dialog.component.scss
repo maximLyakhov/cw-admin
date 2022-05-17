@@ -1,0 +1,33 @@
+@import '_colors';
+
+:host {
+  overflow: auto;
+  min-width: 632px;
+  padding: 20px;
+}
+
+.modal-body {
+  form {
+    padding-top: 36px;
+
+    .flex {
+      column-gap: 16px;
+
+
+        cw-input {
+          width: 180px;
+          margin: 0 16px;
+          vertical-align: middle;
+        }
+      }
+
+      textarea {
+        width: 100%;
+        font-family: 'InterVariable', sans-serif;
+    }
+  }
+}
+
+.modal-footer {
+  padding-top: 26px;
+}

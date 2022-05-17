@@ -1,0 +1,24 @@
+cwb-sessions-page {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    max-width: 1216px;
+
+    .preserve {
+        white-space: pre-line;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ng2-smart-th.actions {
+        text-align: end;
+
+        .ng2-smart-title {
+            margin-right: 8px;
+        }
+    }
+}

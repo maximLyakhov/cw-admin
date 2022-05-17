@@ -1,0 +1,14 @@
+<label class="a-s-fs" for="input">Share viewing details</label>
+<div class="flex col j-c-sb a-i-c share">
+	<div class="flex row w-100">
+		<a [href]="href" class="flex w-100" target="_blank" title="Open in new tab">
+			<input (click)="copy()" [value]="href" class="w-100" disabled id="input" readonly type="text">
+		</a>
+		<cw-svg-icon
+			(click)="copy()"
+			[independent]="true"
+			svg="copy"
+		></cw-svg-icon>
+	</div>
+	<span *ngIf="copied" class="copied mt-16">Link copied to clipboard!</span>
+</div>

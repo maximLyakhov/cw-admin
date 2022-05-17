@@ -1,0 +1,11 @@
+@import '_colors';
+
+.next-session {
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 24px;
+	display: flex;
+	align-items: center;
+	color: $gray-90;
+	white-space: pre-line;
+}

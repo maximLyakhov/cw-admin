@@ -1,0 +1,18 @@
+<ng-container *ngIf="!loaded">
+	<cw-loader *ngIf="!loaded"></cw-loader>
+</ng-container>
+
+<form class="payment-form mt-20" id="payment-form">
+	<div class="mb-20" id="payment-element">
+		<div #cardInfo id="card-info"></div>
+	</div>
+	<div class="flex row j-c-fe">
+		<cw-small-button
+			(click)="submit()"
+			*ngIf="loaded"
+			buttonText="Submit"
+			id="submit"
+		></cw-small-button>
+	</div>
+	<div #error id="error-message"></div>
+</form>

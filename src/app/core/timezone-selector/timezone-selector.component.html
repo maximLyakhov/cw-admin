@@ -1,0 +1,34 @@
+<div
+  [formGroup]="timeZoneForm"
+  class="form flex row w-100 double-select"
+>
+    <div class="w-100 flex col">
+        <label for="region">Timezone - Country</label>
+        <ng-select
+          [clearable]="false"
+          [items]="$any(timezones)"
+          [notFoundText]="'Loading regions...'"
+          (change)="markAsTouched()"
+          formControlName="region"
+          appendTo="body"
+          bindLabel="region"
+          class="select region"
+          id="region"
+          placeholder="Region"
+        ></ng-select>
+    </div>
+
+    <div class="w-100 flex col" *ngIf="timeZoneForm.get('region')?.value">
+        <label for="city">Timezone - City</label>
+        <ng-select
+          [items]="$any(cities)"
+          [clearable]="false"
+          (change)="markAsTouched()"
+          formControlName="city"
+          appendTo="body"
+          class="select city"
+          id="city"
+          placeholder="City"
+        ></ng-select>
+    </div>
+</div>

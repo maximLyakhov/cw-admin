@@ -1,0 +1,46 @@
+<table *ngIf="bookingSessions | async as bookingSessions">
+	<thead>
+	<tr>
+		<th>Session ID</th>
+		<th>Start time</th>
+		<th>Status</th>
+		<th>Duration</th>
+		<th>Actions</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr *ngFor="let session of bookingSessions">
+		<td class="session-id">{{session.sessionId}}</td>
+		<td class="start-time">
+			{{session.startEpoch | adjustTime:userTZ}}
+		</td>
+		<td>
+			<cwb-badge
+				[color]="session.status === 'Future' ? 'green' :
+								 session.status === 'Cancelled' ? 'gray' :
+								 session.status === 'Completed' ? 'blue' :
+								 session.status === 'Running' ? 'orange' : 'primary'"
+				[text]="session.status"
+			></cwb-badge>
+		</td>
+		<td class="duration">{{session.sessionDurationMins}}</td>
+		<td class="flex row gap-16">
+			<ng-container *ngIf="isEditable(session)">
+				<cw-svg-icon
+					svg="edit"
+					[independent]="true"
+					(click)="edit(session)"
+				></cw-svg-icon>
+				<cw-svg-icon
+					svg="close"
+					[independent]="true"
+					(click)="cancel(session.sessionId)"
+				></cw-svg-icon>
+			</ng-container>
+		</td>
+	</tr>
+	</tbody>
+</table>
+<div class="fs-xs flex row j-c-fe explanation">
+	Times are shown in {{userTZ}} time zone
+</div>

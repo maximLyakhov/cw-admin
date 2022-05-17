@@ -1,0 +1,16 @@
+# compiled output
+/dist
+/build
+/tmp
+
+# dependencies
+/node_modules
+
+
+# IDEs and editors
+/.idea
+/.angular
+package-lock.json
+
+# Inspections
+sme.html

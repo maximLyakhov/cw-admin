@@ -1,0 +1,25 @@
+@import '_colors';
+
+:host {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 32px;
+	box-shadow: 0 2px 4px 2px #6b6b6b0a, 0 4px 6px 4px #4444440a;
+	position: relative;
+	overflow: hidden;
+	width: 100vw;
+	min-height: 60px;
+	max-height: 60px;
+
+	.not-member {
+		font-size: 16px;
+		line-height: 24px;
+		color: $gray-60;
+	}
+
+	.right,
+	.logo {
+		width: 315px;
+	}
+}

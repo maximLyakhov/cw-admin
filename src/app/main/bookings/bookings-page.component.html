@@ -1,0 +1,27 @@
+<cwb-page-top>
+    <cwb-button-header>
+        <h3>Bookings</h3>
+        <cw-svg-icon
+          (click)="load()"
+          [independent]="true"
+          svg="refresh"
+        ></cw-svg-icon>
+    </cwb-button-header>
+    <cw-button
+      routerLink="create"
+      buttonText="Add new booking"
+    ></cw-button>
+</cwb-page-top>
+
+<ng-container *ngIf="bookings$ | async as bookings; else empty">
+    <cwb-card>
+        <cwb-smart-table
+            [source]="bookings$"
+            [columns]="columnsConfig"
+        ></cwb-smart-table>
+    </cwb-card>
+</ng-container>
+
+<ng-template #empty>
+    <span> You have no bookings yet. Click on "Add new booking" to make your first booking.</span>
+</ng-template>

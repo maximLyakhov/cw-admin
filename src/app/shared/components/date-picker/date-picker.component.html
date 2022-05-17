@@ -1,0 +1,17 @@
+<label for="timePicker">{{label}}</label>
+<input
+	id="timePicker"
+	autocomplete="off"
+	class="form-control"
+	type="text"
+	ngxDaterangepickerMd
+	[placeholder]="label"
+	[singleDatePicker]="true"
+	[closeOnAutoApply]="true"
+	[autoApply]="true"
+	[locale]="locale"
+	[minDate]="minDate"
+	[formControl]="datePicker"
+	drops="down"
+	opens="right"
+/>

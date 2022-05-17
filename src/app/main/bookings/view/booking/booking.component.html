@@ -1,0 +1,83 @@
+<div *ngIf="(booking$|async) as data" class="flex col gap-16">
+	<div class="flex j-c-sb a-i-c head">
+		<h4>Booking details</h4>
+
+		<cw-small-button
+			[buttonText]="'Edit'"
+			[icon]="'edit'"
+			[inverted]="true"
+			routerLink="edit"
+		></cw-small-button>
+	</div>
+	<div class="scrollable flex col gap-16">
+		<fieldset>
+			<div>
+				<label>Title</label>
+				<div class="text-field">{{data.title}}</div>
+			</div>
+			<div class="flex col mt-16">
+				<label>Booking ID</label>
+				<div class="text-field copyable">{{data.bookingToken}}</div>
+			</div>
+			<div class="flex col mt-16">
+				<label>Timezone</label>
+				<div class="text-field">
+					{{data.bookingTimeZone | region}},
+					{{data.bookingTimeZone | city}}
+					{{data.bookingTimeZone | timezone}}
+				</div>
+			</div>
+		</fieldset>
+
+		<cwb-share-booking-link [booking]="data"></cwb-share-booking-link>
+
+		<fieldset>
+			<div>
+				<label>Audio details</label>
+				<div class="text-field">{{data.audioDetails}}</div>
+			</div>
+			<div class="flex col mt-16">
+				<label>Caption details</label>
+				<div class="text-field">{{data.captionDispDetails}}</div>
+			</div>
+			<ng-container *ngIf="data.bookingPasscode && data.requirePasscode">
+				<div class="flex row gap-16 mt-16">
+					<div class="flex col">
+						<label>Booking passcode</label>
+						<div class="text-field copyable">{{data.bookingPasscode}}</div>
+					</div>
+					<ng-container *ngIf="data.viewerEmails">
+						<ng-container *ngIf="data.viewerEmails.split('\n').length > 0">
+							<div class="flex col">
+								<label>Number of authorized viewers:</label>
+								<div class="text-field">{{data.viewerEmails.split('\n').length}}</div>
+							</div>
+						</ng-container>
+					</ng-container>
+				</div>
+			</ng-container>
+			<div class="flex col mt-16">
+				<label>Captioner passcode</label>
+				<div class="text-field copyable">{{data.bookingCaptionerPasscode}}</div>
+			</div>
+			<ng-container *ngIf="data.authorisedViewersOnly">
+	                <span class="flex row gap a-i-c text-field mt-16" style="gap: 12px">
+	                    <cw-svg-icon svg="checked"></cw-svg-icon>
+	                    Authorised viewers only
+	                </span>
+			</ng-container>
+			<ng-container *ngIf="data.requireLogin">
+	                <span class="flex row a-i-c text-field mt-16" style="gap: 12px">
+	                    <cw-svg-icon svg="checked"></cw-svg-icon>
+	                    Require CaptionWorks login
+	                </span>
+			</ng-container>
+			<ng-container *ngIf="data.requirePasscode">
+					         <span class="flex row gap a-i-c text-field mt-16" style="gap: 12px">
+	                    <cw-svg-icon svg="checked"></cw-svg-icon>
+	                    Require passcode
+	                </span>
+			</ng-container>
+		</fieldset>
+	</div>
+</div>

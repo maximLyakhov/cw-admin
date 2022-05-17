@@ -1,0 +1,13 @@
+<button
+	[class.inverted]="inverted"
+	[disabled]="buttonDisabled"
+	[type]="buttonType"
+>
+	<cw-svg-icon
+		*ngIf="buttonIcon"
+		[svg]="buttonIcon"
+	></cw-svg-icon>
+	<span>
+		{{ buttonText }}
+	</span>
+</button>

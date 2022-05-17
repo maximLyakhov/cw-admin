@@ -1,0 +1,7 @@
+<ng2-smart-table
+	(userRowSelect)="rowClicked.emit($event)"
+	[settings]="{columns, actions: false, pager: {perPage: 5}}"
+	[source]="dataSource"
+	class="custom-table"
+>
+</ng2-smart-table>

@@ -1,0 +1,25 @@
+<div [style]="errorMessage && {marginBottom: 0}" class="flex col flex-1 w-100 wrapper">
+	<label for="{{inputLabel}}">{{ inputLabel }}</label>
+	<input
+		id="{{inputLabel}}"
+		(blur)="onTouch()"
+		(ngModelChange)="onChange($event)"
+		[autocomplete]="inputAutocomplete"
+		[class.error]="errorMessage"
+		[class.mb-20]="!errorMessage"
+		[disabled]="!!inputDisabled"
+		[ngModel]="value"
+		[placeholder]="inputPlaceholder || ''"
+		class="fs-m"
+		[type]="inputType"
+	/>
+	<div
+		*ngIf="errorMessage"
+		class="input-error flex row a-i-c fs-xs"
+	>
+		<div class="point"></div>
+		<span>
+			{{ errorMessage }}
+		</span>
+	</div>
+</div>

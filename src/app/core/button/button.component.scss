@@ -1,0 +1,49 @@
+@import '_colors';
+
+:host {
+	padding: 0 4px;
+}
+
+button {
+	background: $blue-60;
+	border-radius: 8px;
+	border: 0;
+	color: $white;
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 17px;
+	line-height: 24px;
+	height: 56px;
+	width: 100%;
+	max-width: 448px;
+	transition: background, color 200ms ease-in;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+	padding: 8px 16px;
+
+	&.inverted {
+		background: $blue-10;
+		color: $blue-60;
+
+		&:hover {
+			color: $white;
+		}
+	}
+
+	&:hover {
+		background: $blue-70;
+		transition: background 200ms ease-in;
+	}
+
+	&:disabled {
+		background: $blue-20;
+		cursor: not-allowed;
+	}
+
+	&:focus-visible {
+		outline: 2px solid $blue-50;
+		outline-offset: 2px;
+	}
+}

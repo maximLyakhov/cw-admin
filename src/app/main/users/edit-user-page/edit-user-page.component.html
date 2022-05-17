@@ -1,0 +1,6 @@
+<cwb-page-top class="flex a-i-fs w-100">
+	<h3>⚙️ Edit user</h3>
+</cwb-page-top>
+<cwb-card *ngIf="(user$ | async) as user">
+	<cwb-user-form (dataChange)="save($event)" [data]="user"></cwb-user-form>
+</cwb-card>

@@ -1,0 +1,13 @@
+@import '_colors';
+
+.form-control {
+	padding: 5px 16px !important;
+	text-align: center;
+	user-input: none;
+}
+
+input {
+	font-size: 14px !important;
+	caret-color: transparent;
+	background: $gray-20;
+}

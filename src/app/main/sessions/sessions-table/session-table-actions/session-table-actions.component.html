@@ -1,0 +1,32 @@
+<ng-container *ngIf="rowData.status !== 'Cancelled'">
+	<div class="flex col a-i-c j-c-c flex-1">
+		<cw-svg-icon
+			(click)="edit(rowData)"
+			[independent]="true"
+			svg="edit"
+			title="Edit Session"
+		></cw-svg-icon>
+		<cw-svg-icon
+			(click)="cancel(rowData)"
+			[independent]="true"
+			svg="close"
+			title="Cancel Session"
+		></cw-svg-icon>
+	</div>
+</ng-container>
+
+<div class="flex col a-i-c j-c-c flex-1">
+	<cw-svg-icon
+		(click)="showCaptionLogs(rowData)"
+		[independent]="true"
+		svg="captions"
+		title="Captioner Log"
+	></cw-svg-icon>
+
+	<cw-svg-icon
+		(click)="showViewerLogs(rowData)"
+		[independent]="true"
+		svg="viewers"
+		title="Viewer Log"
+	></cw-svg-icon>
+</div>

@@ -1,0 +1,10 @@
+<button
+	[class.inverted]="inverted"
+	[class.normal]="!inverted"
+	[class.smaller]="smaller"
+	[disabled]="buttonDisabled"
+	type="button"
+>
+	<cw-svg-icon *ngIf="icon" [svg]="icon" class="mr-8"></cw-svg-icon>
+	<span class="word-nowrap">{{ buttonText }}</span>
+</button>

@@ -1,0 +1,13 @@
+<div class="flex col w-100 wrapper">
+	<label for="input">{{ inputLabel }}</label>
+
+	<textarea
+      id="input"
+			(blur)="onTouch()"
+			(ngModelChange)="onChange($event)"
+			[disabled]="!!inputDisabled"
+			[ngModel]="value"
+			[placeholder]="inputPlaceholder || ''"
+      [rows]="rows"
+	></textarea>
+</div>

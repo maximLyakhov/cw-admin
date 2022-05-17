@@ -1,0 +1,59 @@
+<form [formGroup]="form" class="update-form">
+	<div class="flex j-c-sb a-i-c form-head" style="margin-bottom: 16px">
+		<h4>Edit booking</h4>
+		<div class="flex" style="gap: 12px;">
+			<cw-small-button
+				[inverted]="true"
+				buttonText="Cancel"
+				routerLink="../"
+			></cw-small-button>
+			<cw-small-button
+				(click)="update()"
+				[buttonDisabled]="form.invalid"
+				buttonText="Save"
+				icon="save-white"
+				routerLink="../"
+			></cw-small-button>
+		</div>
+	</div>
+
+	<div class="scrollable">
+		<cw-input
+			formControlName="title"
+			inputLabel="Title"
+		></cw-input>
+
+		<cwb-textarea
+			formControlName="audioDetails"
+			inputLabel="Audio details"
+		></cwb-textarea>
+
+		<cwb-textarea
+			formControlName="captionDispDetails"
+			inputLabel="Caption Display Details"
+		></cwb-textarea>
+
+		<cw-input
+			formControlName="bookingCaptionerPasscode"
+			inputLabel="Captioner Passcode"
+		></cw-input>
+
+		<cw-checkbox formControlName="requirePasscode">
+			Require passcode
+		</cw-checkbox>
+
+		<cw-checkbox formControlName="requireLogin">
+			Viewer must be logged into CaptionWorks
+		</cw-checkbox>
+
+		<cw-checkbox formControlName="authorisedViewersOnly">
+			Only allow these logged in users:
+		</cw-checkbox>
+
+		<cwb-viewers-list
+			*ngIf="form.controls['authorisedViewersOnly'].value"
+			class="flex mt-16"
+			formControlName="viewerEmails"
+		></cwb-viewers-list>
+	</div>
+</form>

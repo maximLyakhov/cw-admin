@@ -1,0 +1,31 @@
+<cwb-page-top>
+	<cwb-button-header>
+		<h3>Sessions</h3>
+		<cw-svg-icon
+			svg="refresh"
+			(click)="load()"
+			[independent]="true"
+		></cw-svg-icon>
+		<cwb-range-picker
+			(picked)="changedDates($event)"
+			[formControl]="rangePicker"
+		></cwb-range-picker>
+	</cwb-button-header>
+</cwb-page-top>
+
+<cwb-card *ngIf="(sessions$ | async) as sessions">
+	<cwb-smart-table
+		*ngIf="sessions.length; else empty"
+		[source]="sessions$"
+		[columns]="columnsConfig"
+	></cwb-smart-table>
+</cwb-card>
+
+<ng-template #empty>
+	<ng-container *ngIf="rangePicker.value; else notTouched">
+		No sessions for chosen period found.
+	</ng-container>
+	<ng-template #notTouched>
+		<span>You have no range selected.</span>
+	</ng-template>
+</ng-template>

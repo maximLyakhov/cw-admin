@@ -1,0 +1,20 @@
+<div class="billing-view">
+	<div class="header flex row j-c-sb a-i-c w-100">
+		<h4>Billing details</h4>
+		<cw-svg-icon
+			svg="close"
+			(click)="close()"
+			[independent]="true"
+		></cw-svg-icon>
+	</div>
+
+	<ng-container *ngIf="billing$ | async as billings">
+		<cwb-card *ngIf="billings.length">
+			<cwb-smart-table
+				class="billing-view-table"
+				[source]="billing$"
+				[columns]="tableConfig"
+			></cwb-smart-table>
+		</cwb-card>
+	</ng-container>
+</div>

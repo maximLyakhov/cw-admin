@@ -1,0 +1,83 @@
+<h3>
+	<ng-container *ngIf="!inEditMode; else editTitle">Add session</ng-container>
+	<ng-template #editTitle>Edit session</ng-template>
+</h3>
+
+<form [formGroup]="form" class="modal-body">
+	<div class="flex row gap-16 w-100 mb-20 mt-16">
+		<cwb-date-picker
+			class="flex flex-1"
+			formControlName="startDate"
+			label="Session Date"
+			[isEditMode]="!inEditMode"
+		></cwb-date-picker>
+		<div class="flex col flex-1">
+			<label>Select Time</label>
+			<input formControlName="startTime" type="time"/>
+		</div>
+	</div>
+
+	<div class="flex row a-i-c j-c-sb w-100">
+		<span class="mb-20">Total session duration</span>
+		<cw-input
+			formControlName="sessionDurationMins"
+			inputType="number"
+		></cw-input>
+		<span class="mb-20">minutes</span>
+	</div>
+
+	<cw-checkbox
+		(change)="setFormStatus('audioDetailsOverrideCheck', 'audioDetailsOverride')"
+		formControlName="audioDetailsOverrideCheck"
+	>Audio details same as booking
+	</cw-checkbox>
+
+	<cwb-textarea
+		formControlName="audioDetailsOverride"
+		inputPlaceholder="Enter audio details here"
+		[inputDisabled]="form.controls['audioDetailsOverrideCheck'].value"
+	></cwb-textarea>
+
+	<cw-checkbox
+		(change)="setFormStatus('captionDispOverrideCheck', 'captionDispOverride')"
+		formControlName="captionDispOverrideCheck"
+	>Caption display same as booking
+	</cw-checkbox>
+
+  <cwb-textarea
+    [inputDisabled]="form.controls['captionDispOverrideCheck'].value"
+    formControlName="captionDispOverride"
+    inputPlaceholder="Enter caption details here"
+  ></cwb-textarea>
+
+	<div *ngIf="isAdmin" class="flex">
+		<cw-input
+			formControlName="respeakerRateOverride"
+			inputLabel="Re-speaker rate override"
+			inputType="number"
+		></cw-input>
+	</div>
+
+  <cw-checkbox formControlName="allowOverrun"
+  >Allow captioning to overrun
+  </cw-checkbox>
+
+	<cw-checkbox
+		*ngIf="isAdmin"
+		formControlName="nonBilled">
+		Non-billed
+	</cw-checkbox>
+</form>
+
+<div class="modal-footer flex j-c-sb">
+	<cw-small-button
+		(click)="close()"
+		[buttonText]="'Cancel'"
+		[inverted]="true"
+	></cw-small-button>
+	<cw-small-button
+		(click)="save()"
+		[buttonDisabled]="form.invalid || form.pristine"
+		[buttonText]="inEditMode ? 'Save' : 'Create'"
+	></cw-small-button>
+</div>

@@ -1,0 +1,179 @@
+<h2>⏰ Create new booking</h2>
+
+<cw-stepper #stepper [linear]="true">
+	<cdk-step [stepControl]="firstFormGroup" label="Tell us about your captioning requirements">
+		<ng-container *ngTemplateOutlet="first"></ng-container>
+		<div class="flex row w-100 j-c-sb">
+			<div></div>
+			<cw-button
+				(click)="stepper.next()"
+				[buttonDisabled]="firstFormGroup.invalid"
+				buttonText="Next"
+				class="hundred-twenty-width"
+			></cw-button>
+		</div>
+	</cdk-step>
+	<cdk-step [stepControl]="secondFormGroup" label="Add audio and caption details">
+		<ng-container *ngTemplateOutlet="second"></ng-container>
+		<div class="flex row w-100 j-c-sb">
+			<cw-button
+				(click)="stepper.previous()"
+				buttonText="Back"
+				[inverted]="true"
+				class="hundred-twenty-width"
+			></cw-button>
+			<cw-button
+				(click)="stepper.next()"
+				[buttonDisabled]="secondFormGroup.invalid"
+				buttonText="Next"
+				class="hundred-twenty-width"
+			></cw-button>
+		</div>
+	</cdk-step>
+	<cdk-step [stepControl]="thirdFormGroup" label="Tell us about your security requirements">
+		<ng-container *ngTemplateOutlet="third"></ng-container>
+
+		<div class="flex row w-100 j-c-sb">
+			<cw-button
+				(click)="stepper.previous()"
+				buttonText="Back"
+				[inverted]="true"
+				class="hundred-twenty-width"
+			></cw-button>
+			<cw-button
+				(click)="createBooking()"
+				[buttonDisabled]="thirdFormGroup.invalid"
+				buttonText="Save"
+				class="hundred-twenty-width"
+			></cw-button>
+		</div>
+	</cdk-step>
+</cw-stepper>
+
+<ng-template #first>
+	<form [formGroup]="firstFormGroup" class="flex col">
+
+		<cw-input
+			formControlName="title"
+			id="title"
+			inputLabel="Booking Title"
+			inputPlaceholder="Enter booking title here"
+		></cw-input>
+
+		<div class="flex row gap mb-20 w-100">
+			<div class="flex row gap w-100" style="padding: 0 4px; gap: 24px">
+				<cwb-date-picker
+					class="flex col flex-1"
+					formControlName="startDate"
+					id="timePicker"
+					label="Session Date"
+				></cwb-date-picker>
+				<div class="flex col flex-1">
+					<label>Select Time</label>
+					<input
+						formControlName="startTime"
+						type="time"
+					/>
+				</div>
+			</div>
+		</div>
+
+		<cwb-timezone-selector formControlName="timeZoneOverride"></cwb-timezone-selector>
+
+		<div class="flex row gap a-i-c">
+			<span class="body-field">Total session duration</span>
+			<input
+				formControlName="durationMins"
+				id="durationMins"
+				max="1439"
+				min="1"
+				required
+				style="text-align: center; width: 48pt;"
+				type="number"
+			>
+			<span class="body-field">minutes</span>
+			<label
+				*ngIf="firstFormGroup.controls['durationMins'].invalid"
+				style="margin-bottom: unset"
+			>
+				Minimum duration is 15 minutes
+			</label>
+		</div>
+
+		<div class="flex row gap a-i-c mt-16">
+			<span class="body-field">Sessions repeat weekly for</span>
+			<input
+				formControlName="countWeeks"
+				id="countWeeks"
+				max="100"
+				min="1"
+				required
+				style="text-align: center; width: 38pt; margin: 0;"
+				type="number"
+			>
+			<span class="body-field">total sessions</span>
+		</div>
+
+		<cw-checkbox class="mt-20" formControlName="allowOverrun">
+			Allow captioning to overrun
+		</cw-checkbox>
+	</form>
+</ng-template>
+
+<ng-template #second>
+	<form [formGroup]="secondFormGroup" class="flex col">
+		<div *ngIf="isAdmin" style="padding: 0 4px">
+			<label for="oboUserId">Booking owner</label>
+			<ng-select
+				*ngIf="users$ | async as users"
+				[clearable]="false"
+				[searchable]="true"
+				class="flex mb-20"
+				formControlName="oboUserId"
+				id="oboUserId"
+			>
+				<ng-option *ngFor="let user of users" [value]="user.userId">
+					{{ user.firstName }} {{user.lastName}}
+				</ng-option>
+			</ng-select>
+		</div>
+
+		<cwb-textarea
+			formControlName="audioDetails"
+			inputLabel="Tell us how the captioner can hear the audio of the session. Typically this is the login details for a Zoom or Teams meeting, etc. Otherwise, the viewer can share their audio directly from the CaptionWorks viewer."
+		></cwb-textarea>
+
+		<cwb-textarea
+			formControlName="captionDispDetails"
+			inputLabel="Where would you like your captions displayed?"
+		></cwb-textarea>
+	</form>
+</ng-template>
+
+<ng-template #third>
+	<form [formGroup]="thirdFormGroup">
+
+		<cw-checkbox class="mb-20 mt-20" formControlName="requirePasscode">
+			Require passcode to view
+		</cw-checkbox>
+
+		<cw-checkbox class="mb-20" formControlName="requireLogin">
+			Viewer must be logged into CaptionWorks
+		</cw-checkbox>
+
+		<cw-checkbox class="mb-20" formControlName="authorisedViewersOnly">
+			Only allow these logged in users:
+		</cw-checkbox>
+
+		<ng-container *ngIf="thirdFormGroup.controls['authorisedViewersOnly'].value">
+			<div class="flex col">
+				<h5 class="mb-20">
+					Authorised viewers:
+				</h5>
+				<cwb-viewers-list formControlName="authorisedViewerEmails"
+				                  id="viewerEmails"></cwb-viewers-list>
+			</div>
+		</ng-container>
+
+	</form>
+</ng-template>
